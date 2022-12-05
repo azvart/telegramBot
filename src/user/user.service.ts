@@ -19,8 +19,7 @@ export class UserService {
       const existUser = await this.userRepository.find({
         where: { telegram_id: payload.telegram_id },
       });
-
-      if (existUser) {
+      if (existUser.length > 0) {
         return true;
       } else {
         const newUser = await this.userRepository.create({ ...payload });
